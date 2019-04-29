@@ -32,7 +32,11 @@ function onMouseMove(event) {
 }
 
 function startPainting(event) {
-    painting = true;
+    if (!filling) {
+      painting = true;
+    } else {
+      handleCanvasClick();
+    }
 }
 
 function stopPainting(event) {
@@ -83,7 +87,6 @@ if (canvas) {
     canvas.addEventListener("mousedown", startPainting);
     canvas.addEventListener("mouseup", stopPainting);
     canvas.addEventListener("mouseleave", stopPainting);
-    canvas.addEventListener("click", handleCanvasClick);
     canvas.addEventListener("contextmenu", hendleContextMenu);
 }
 
