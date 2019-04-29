@@ -4,6 +4,7 @@ const colors = document.getElementsByClassName("jsColor");
 const range = document.getElementById("jsRange");
 const mode = document.getElementById("jsMode");
 const save = document.getElementById("jsSave");
+const clrea = document.getElementById("jsClrea");
 
 let INTIIAL_COLOR = "#2c2c2c";
 
@@ -82,6 +83,11 @@ function hendleSaveClick(event) {
     link.click();
 }
 
+function hendleClreaClick(event) {
+    ctx.fillStyle = "white";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+}
+
 if (canvas) {
     canvas.addEventListener("mousemove", onMouseMove);
     canvas.addEventListener("mousedown", startPainting);
@@ -106,4 +112,8 @@ if (mode) {
 
 if (save) {
     save.addEventListener("click", hendleSaveClick);
+}
+
+if (clrea) {
+    clrea.addEventListener("click", hendleClreaClick);
 }
