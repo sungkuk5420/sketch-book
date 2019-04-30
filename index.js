@@ -25,7 +25,6 @@ function onMouseMove(event) {
     const x = event.offsetX || (event.touches[0].pageX - event.touches[0].target.offsetLeft);
     const y = event.offsetY || (event.touches[0].pageY - event.touches[0].target.offsetTop);
     if (!painting) {
-        ctx.beginPath();
         ctx.moveTo(x, y);
     } else {
         ctx.lineTo(x, y);
@@ -34,6 +33,7 @@ function onMouseMove(event) {
 }
 
 function startPainting(event) {
+    ctx.beginPath();
     if (!filling) {
       painting = true;
     } else {
@@ -94,7 +94,6 @@ function hendleWindowResize() {
       clearTimeout(timer);
     }
     timer = setTimeout(function() {
-        console.log('resize');
         canvas.width = canvas.offsetWidth;
         canvas.height = canvas.offsetHeight;
     }, 200);
