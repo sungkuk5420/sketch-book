@@ -33,9 +33,9 @@ body {
         -ms-flex: auto;
             flex: auto;
     width: calc(100% - 20px);
+    height: calc(100% - 250px);
     max-width: 700px;
     max-height: 700px;
-    height: auto;
 }
 
 .canvas {
