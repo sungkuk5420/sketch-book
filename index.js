@@ -115,9 +115,9 @@ if (canvas) {
 }
 
 if (colors) {
-    Array.from(colors).forEach(color =>
+    Array.from(colors).forEach(function (color) {
         color.addEventListener("click", handleColorClick)
-    );
+    });
 }
 
 if (range) {
