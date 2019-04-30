@@ -8,8 +8,8 @@ const clrea = document.getElementById("jsClrea");
 
 let INTIIAL_COLOR = "#2c2c2c";
 
-canvas.width = 700;
-canvas.height = 700;
+canvas.width = canvas.offsetWidth;
+canvas.height = canvas.offsetHeight;
 
 ctx.fillStyle = "white";
 ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -19,6 +19,7 @@ ctx.lineWidth = 5;
 
 let painting = false;
 let filling = false;
+let timer;
 
 function onMouseMove(event) {
     const x = event.offsetX;
@@ -88,6 +89,18 @@ function hendleClreaClick(event) {
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 }
 
+function hendleWindowResize() {
+    if (timer) {
+      clearTimeout(timer);
+    }
+    timer = setTimeout(function() {
+        console.log('resize');
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+    }, 200);
+
+}
+
 if (canvas) {
     canvas.addEventListener("mousemove", onMouseMove);
     canvas.addEventListener("mousedown", startPainting);
@@ -116,4 +129,8 @@ if (save) {
 
 if (clrea) {
     clrea.addEventListener("click", hendleClreaClick);
+}
+
+if (window) {
+    window.addEventListener("resize", hendleWindowResize);
 }
