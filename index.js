@@ -22,8 +22,8 @@ let filling = false;
 let timer;
 
 function onMouseMove(event) {
-    const x = event.offsetX;
-    const y = event.offsetY;
+    const x = event.offsetX || (event.touches[0].pageX - event.touches[0].target.offsetLeft);
+    const y = event.offsetY || (event.touches[0].pageY - event.touches[0].target.offsetTop);
     if (!painting) {
         ctx.beginPath();
         ctx.moveTo(x, y);
@@ -103,9 +103,14 @@ function hendleWindowResize() {
 
 if (canvas) {
     canvas.addEventListener("mousemove", onMouseMove);
+    canvas.addEventListener("touchmove", onMouseMove);
     canvas.addEventListener("mousedown", startPainting);
+    canvas.addEventListener("touchstart", startPainting);
     canvas.addEventListener("mouseup", stopPainting);
+    canvas.addEventListener("touchend", stopPainting);
     canvas.addEventListener("mouseleave", stopPainting);
+    canvas.addEventListener("touchleave", stopPainting);
+    canvas.addEventListener("touchcancel", stopPainting);
     canvas.addEventListener("contextmenu", hendleContextMenu);
 }
 
